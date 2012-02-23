@@ -1,0 +1,168 @@
+h1. Air Native Extension for Game Center integration on iOS
+
+This is an "Air native extension":http://www.adobe.com/devnet/air/native-extensions-for-air.html for "Game Center":http://www.apple.com/game-center/ integration on the iOS platform.
+
+h3. Version
+
+This is version 0.5 of this extension.
+
+h3. Binary files
+
+The bin folder contains the compiled extension and the default swc, which can be used for local testing if required by your development environment (Flash Builder shouldn't need it, but other IDEs may).
+
+h3. Building
+
+Requirements - Adobe Air SDK 3.1 or later, XCode IDE, iOS SDK 5.0 or later
+
+* Add the FlashRuntimeExtensions.h file from the Adobe Air sdk to the ios/GameCenterIosExtension folder in the project.
+* Create a copy of the build/example.build.config file in the build folder, calling it build.config and change the properties in this file to match your system.
+** A certificate is required by the build script. This may be a self-signed certificate created by Adobe Air.
+* Run the ant build script build.xml. This creates the native extension, and default swc file, inside the bin folder.
+
+h3. The test project
+
+A simple test project is included for testing the extension. To build this air project
+
+* Create a copy of the test/build/example.build.config file in the test/build folder, calling it build.config and change the properties in this file to match your system.
+* Create a test app in iTunesConnect and add Game Center to the app.
+** Add a leaderboard to the project with the id "HighScore".
+** Add an achievement to the project with the id "started".
+* Create a copy of the test/build/example.GameCenterExtensionTest-app.xml file in the test/build folder, calling it GameCenterExtensionTest-app.xml and change the id in this file to match the test app you just created.
+* Run the ant build script test/build.xml. This creates the test ipa inside the test/bin folder.
+
+h3. Using the extension
+
+h4. Test if Game Center is supported
+
+@GameCenter.isSupported;@
+
+Is a boolean.
+
+h4. Authenticate the local player
+
+If Game Center is supported, you should authenticate the local player before doing anything else.
+
+@GameCenter.authenticateLocalPlayer();@
+
+Is asynchronous.
+
+Dispatches one of two signals
+* @GameCenter.localPlayerAuthenticated@
+* @GameCenter.localPlayerNotAuthenticated@
+
+Throws an error if Game Center is not supported
+
+@GameCenter.isAuthenticated;@
+
+is a boolean.
+
+h4. Get the local player
+
+@GameCenter.localPlayer;@
+
+Is an object of type GCLocalPlayer.
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h4. Get the local player's score
+
+@GameCenter.getLocalPlayerScore( "leaderboard" );@
+
+Is asynchronous.
+
+Dispatches one of two signals
+* @GameCenter.localPlayerScoreLoadComplete@ with parameter of type GCLeaderboard
+* @GameCenter.localPlayerScoreLoadFailed@
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h4. Report a score
+
+@GameCenter.reportScore( leaderboard, score );@
+
+Is asynchronous.
+
+Dispatches one of two signals
+* @GameCenter.localPlayerScoreReported@
+* @GameCenter.localPlayerScoreReportFailed@
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h4. Report an achievement
+
+@GameCenter.reportAchievement( achievement, value );@
+
+Is asynchronous.
+
+Dispatches one of two signals
+* @GameCenter.localPlayerAchievementReported@
+* @GameCenter.localPlayerAchievementReportFailed@
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h4. Show a leaderboard
+
+@GameCenter.showStandardLeaderboard( leaderboard (optional), timeScope (optional) );@
+
+Shows Apple's standard leaderboard view.
+
+When the view is closed, dispatches the signal
+* @GameCenter.gameCenterViewRemoved@
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h4. Show the achievements
+
+@GameCenter.showAchievements();@
+
+Shows Apple's standard achievements view.
+
+When the view is closed, dispatches the signal
+* @GameCenter.gameCenterViewRemoved@
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h4. Get the local player's friends
+
+@GameCenter.getLocalPlayerFriends();@
+
+Is asynchronous.
+
+Dispatches one of two signals
+* @GameCenter.localPlayerFriendsLoadComplete@ with a parameter of type Array containing objects of type GCPlayer
+* @GameCenter.localPlayerFriendsLoadFailed@
+
+Throws an error if Game Center is not supported or the local player has not been authenticated.
+
+h3. Example code
+
+You can see all the features in action in the source code of the test project.
+
+h3. Compiling your project
+
+The extension requires that your project is built against version 5 of the iOS SDK. It doesn't require version 5 at run-time (version 4 is sufficient, isSuported will be false for versions before 4.2), but it is required at compile-time. Due to this limitation, any project using the extension must be compiled on a computer running Mac OS X and with version 5 or later of the iOS SDK. Specify the path to the SDK when compiling the project, using the functionality built in to your IDE or the platformsdk parameter if building with adt from the command line or a build script. And use Adobe Air SDK 3.1 or later
+
+h3. Developers
+
+* "Stick Sports":http://www.sticksports.com/mobile
+
+h3. Games using this extension
+
+* "Stick Cricket Super Sixes":http://itunes.apple.com/app/stick-cricket-super-sixes/id483135193?ls=1&mt=8
+
+h2. License
+
+Author: Richard Lord
+Owner: Stick Sports Ltd.
+http://www.sticksports.com
+
+Copyright (c) 2011-2012, Stick Sports Ltd.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+* Neither the name of Stick Sports Ltd. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+  
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
