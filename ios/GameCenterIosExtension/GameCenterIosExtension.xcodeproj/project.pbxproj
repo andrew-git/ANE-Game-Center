@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		798B422C1467CE5700F01668 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798B422B1467CE5700F01668 /* Foundation.framework */; };
-		798B42391467CE9900F01668 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798B42381467CE9900F01668 /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		798B42391467CE9900F01668 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798B42381467CE9900F01668 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		798B423B1467CF0F00F01668 /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 798B423A1467CF0F00F01668 /* FlashRuntimeExtensions.h */; };
 		79FA57BE14F01DE8002FB6AF /* BoardsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79FA57B914F01DE8002FB6AF /* BoardsController.h */; };
 		79FA57BF14F01DE8002FB6AF /* BoardsControllerPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 79FA57BA14F01DE8002FB6AF /* BoardsControllerPad.h */; };
@@ -183,7 +183,7 @@
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -201,7 +201,7 @@
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -216,7 +216,7 @@
 				GCC_PREFIX_HEADER = "GameCenterIosExtension-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = GameCenterIosExtension;
@@ -232,7 +232,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameCenterIosExtension-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = GameCenterIosExtension;
